@@ -1,13 +1,10 @@
+#include "image.h"
 #include "grapefruit.h"
-
-#include <stdio.h>
 
 int main(void){
     Image * img = new_image(255, 255);
-    for (int x = 0; x < img->width; x++){
-    for (int y = 0; y < img->height; y++){
-        img->pixels[y*img->width + x] = RGB(0, 0, 255);
-    }}
+    gf_clear(img, RGB(0, 0, 0));
+    gf_fill_circle(img, img->width/2, img->height/2, 32, RGB(0, 255, 0));
     save_image(img, "img.ppm");
 
     free_image(img);
