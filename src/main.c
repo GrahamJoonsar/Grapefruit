@@ -1,4 +1,6 @@
 #include "image.h"
+
+#define GF_UNSAFE
 #include "grapefruit.h"
 
 int main(void){

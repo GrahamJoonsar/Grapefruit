@@ -19,7 +19,6 @@ void free_image(Image * img){
     free(img);
 }
 
-
 int char_width(uint8_t n){
     if (0 <= n && n <= 9)    return 1;
     if (10 <= n && n <= 99)  return 2;

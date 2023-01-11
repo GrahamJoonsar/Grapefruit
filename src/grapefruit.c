@@ -1,6 +1,9 @@
 #include "grapefruit.h"
 
 void gf_fill_circle(Image * img, int x, int y, int r, uint32_t color){
+    #ifndef GF_UNSAFE
+        if (img == NULL) return;
+    #endif
     int min_x = x - r < 0 ? 0 : x - r;
     int max_x = x + r >= img->width ? img->width-1 : x + r;
     int min_y = y - r < 0 ? 0 : y - r;
@@ -17,12 +20,18 @@ void gf_fill_circle(Image * img, int x, int y, int r, uint32_t color){
 }
 
 void gf_clear(Image * img, uint32_t color){
+    #ifndef GF_UNSAFE
+        if (img == NULL) return;
+    #endif
     for (int i = 0; i < img->width * img->height; i++){
         img->pixels[i] = color;
     }
 }
 
 void gf_fill_rect(Image * img, int x, int y, int w, int h, uint32_t color){
+    #ifndef GF_UNSAFE
+        if (img == NULL) return;
+    #endif
     int min_x = x < 0 ? 0 : x;
     int max_x = x + w >= img->width ? img->width-1 : x + w;
     int min_y = y < 0 ? 0 : y;
@@ -35,6 +44,9 @@ void gf_fill_rect(Image * img, int x, int y, int w, int h, uint32_t color){
 }
 
 void gf_rect(Image * img, int x, int y, int w, int h, uint32_t color){
+    #ifndef GF_UNSAFE
+        if (img == NULL) return;
+    #endif
     int min_x = x < 0 ? 0 : x;
     int max_x = x + w >= img->width ? img->width-1 : x + w;
     int min_y = y < 0 ? 0 : y;
