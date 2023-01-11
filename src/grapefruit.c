@@ -21,3 +21,32 @@ void gf_clear(Image * img, uint32_t color){
         img->pixels[i] = color;
     }
 }
+
+void gf_fill_rect(Image * img, int x, int y, int w, int h, uint32_t color){
+    int min_x = x < 0 ? 0 : x;
+    int max_x = x + w >= img->width ? img->width-1 : x + w;
+    int min_y = y < 0 ? 0 : y;
+    int max_y = y + h >= img->height ? img->height-1 : y + h;
+    
+    for (int i = min_x; i < max_x; i++){
+    for (int j = min_y; j < max_y; j++){
+        img->pixels[j*img->width + i] = color;
+    }}
+}
+
+void gf_rect(Image * img, int x, int y, int w, int h, uint32_t color){
+    int min_x = x < 0 ? 0 : x;
+    int max_x = x + w >= img->width ? img->width-1 : x + w;
+    int min_y = y < 0 ? 0 : y;
+    int max_y = y + h >= img->height ? img->height-1 : y + h;
+
+    for (int i = min_x; i < max_x; i++){
+        img->pixels[min_y*img->width + i] = color;
+        img->pixels[(max_y-1)*img->width + i] = color;
+    }
+
+    for (int i = min_y + 1; i < max_y - 1; i++){
+        img->pixels[i*img->width + min_x] = color;
+        img->pixels[i*img->width + (max_x-1)] = color;
+    }
+}
